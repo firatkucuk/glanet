@@ -1,0 +1,79 @@
+
+
+body {
+    background-color   : #EF5A00;
+    color              : #330000;
+    font-family        : sans-serif, luxi sans, trebuchet ms, tahoma,
+                         verdana, bitstream vera sans;
+    font-size          : 0.8em;
+    font-style         : normal;
+    margin             : 0px;
+    padding            : 0px;
+}
+
+img {
+    border             : none;
+}
+
+td#ustCubukSol {
+    background-color   : #8F0000;
+    border-bottom      : 1px solid #FFFFFF;
+    height             : 46px;
+}
+
+td#ustCubukSag {
+    background-color   : #8F0000;
+    border-bottom      : 1px solid #FFFFFF;
+    height             : 46px;
+    padding            : 10px;
+    text-align         : right;
+}
+
+div#gzegenResim {
+    background         : url(../img/turuncu/gzegen.png);
+    background-position: top left;
+    background-repeat  : no-repeat;
+    height             : 46px;
+}
+
+td#sagCubuk {
+    background-color   : #291000;
+    border-left        : 1px solid #FFFFFF;
+    height             : 900px;
+    vertical-align     : top;
+    width              : 250px;
+}
+
+td#tanitimAlani {
+    background         : url(../img/turuncu/tanitimArka.png);
+    vertical-align     : top;
+}
+
+div#tanitimResim {
+    background         : url(../img/turuncu/tanitim.png);
+    background-position: top left;
+    background-repeat  : no-repeat;
+    height             : 206px;
+}
+
+td#altCubuk {
+    background-color   : #8F0000;
+    border-top         : 1px solid #FFFFFF;
+    height             : 46px;
+}
+
+td#iletiAlani {
+    padding            : 30px;
+}
+
+table#iletiTablosu {
+    height             : 400px;
+}
+
+table#iletiTablosu td {
+    background-color   : #F8BB97;
+    border             : 1px solid #5C5C5C;
+    padding            : 10px;
+}
+
+
