@@ -16,6 +16,8 @@ public class BlogItem {
 	private String link;
 	private String date;
 	private String description;
+        private String content;
+
 	/**
 	 * @return the channelUrl
 	 */
@@ -112,4 +114,12 @@ public class BlogItem {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
+
+        public String getContent() {
+            return content;
+        }
+
+        public void setContent(String content) {
+            this.content = content;
+        }
 }

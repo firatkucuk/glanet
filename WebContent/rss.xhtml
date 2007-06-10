@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<rss version="2.0"
+    xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:media="http://search.yahoo.com/mrss/"
+    xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" lang="tr" xml:lang="tr">
+ <f:view contentType="application/rss+xml">       
+ <channel>
+  <title>Gaplan Gezegeni</title>
+  <description>gaplan takımının üyelerine ait gezegen</description>
+  <link>http://www.gaplan.org/rss.xhtml</link>
+  <c:forEach items="#{Blogs.all}" var="blog">
+   <item>
+    <title>#{blog.title}</title>
+    <link>#{blog.link}</link>
+    <guid isPermaLink="false">#{blog.link}</guid>
+    <pubDate>#{blog.date}</pubDate>
+    <description><![CDATA[#{blog.description}]]></description>
+    <content:encoded><![CDATA[#{blog.content}]]></content:encoded>
+   </item>
+  </c:forEach>
+ </channel>
+ </f:view>
+</rss>
