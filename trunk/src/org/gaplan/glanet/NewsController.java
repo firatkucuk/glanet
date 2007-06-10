@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.gaplan;
+package org.gaplan.glanet;
 
 import java.net.URL;
 import java.util.ArrayList;
