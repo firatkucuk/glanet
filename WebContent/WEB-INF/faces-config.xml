@@ -9,7 +9,7 @@
 		<managed-bean-name>
 		Users</managed-bean-name>
 		<managed-bean-class>
-		org.gaplan.Users</managed-bean-class>
+		org.gaplan.glanet.Users</managed-bean-class>
 		<managed-bean-scope>
 		request</managed-bean-scope>
 	</managed-bean>
@@ -17,7 +17,7 @@
 		<managed-bean-name>
 		Settings</managed-bean-name>
 		<managed-bean-class>
-		org.gaplan.Settings</managed-bean-class>
+		org.gaplan.glanet.Settings</managed-bean-class>
 		<managed-bean-scope>
 		session</managed-bean-scope>
 	</managed-bean>
@@ -25,7 +25,7 @@
 		<managed-bean-name>
 		Blogs</managed-bean-name>
 		<managed-bean-class>
-		org.gaplan.Blogs</managed-bean-class>
+		org.gaplan.glanet.Blogs</managed-bean-class>
 		<managed-bean-scope>
 		request</managed-bean-scope>
 	</managed-bean>

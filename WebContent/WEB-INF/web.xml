@@ -117,7 +117,7 @@
 	</listener>
 	<servlet>
 		<servlet-name>Fetcher Servlet</servlet-name>
-		<servlet-class>org.gaplan.FetcherServlet</servlet-class>
+		<servlet-class>org.gaplan.glanet.FetcherServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet>

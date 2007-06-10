@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.gaplan;
+package org.gaplan.glanet;
 
 /**
  * @author cafer

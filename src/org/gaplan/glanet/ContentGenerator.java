@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.gaplan;
+package org.gaplan.glanet;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
