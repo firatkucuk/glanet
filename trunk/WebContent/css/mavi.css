@@ -40,6 +40,7 @@ td#sagCubuk {
     background-color   : #0F2222;
     border-left        : 1px solid #FFFFFF;
     height             : 900px;
+    padding            : 10px;
     vertical-align     : top;
     width              : 250px;
 }
@@ -76,4 +77,19 @@ table#iletiTablosu td {
     padding            : 10px;
 }
 
+a {
+    color              : #291000;
+}
+
+a:hover {
+    color              : #293A79;
+}
+
+a.kullanici {
+    color              : #A1A4FF;
+}
+
+a.kullanici:hover {
+    color              : #FFFFFF;
+}
 
