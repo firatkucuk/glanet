@@ -1,0 +1,12 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/layout.xhtml">
+	<ui:define name="userlist">
+		<ul>
+			<c:forEach items="#{Users.list}" var="user">
+				<li><a href="#{user.url}">#{user.fullName}</a></li>
+			</c:forEach>
+		</ul>
+	</ui:define>
+</ui:composition>
