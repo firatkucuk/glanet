@@ -32,7 +32,9 @@ public class ContentGenerator extends TimerTask {
 			ArrayList<BlogItem> tempList = new ArrayList<BlogItem>();
 			Users users = new Users();
 			for (User user : users.getList()) {
+                System.out.println(user.getUserName() + " basladi");
 				tempList.addAll(NewsController.fetchAll(user.getRssUrl(), user.getFullName()));
+                System.out.println(user.getUserName() + " bitti");
 			}
 			Collections.sort(tempList, new Comparator<BlogItem>() {
 				public int compare(BlogItem o1, BlogItem o2) {
