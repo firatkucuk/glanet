@@ -28,7 +28,7 @@ public class FetcherServlet extends HttpServlet {
 		allItems = new ArrayList<BlogItem>();
 		timer = new Timer();
 		cg = new ContentGenerator(allItems);
-		timer.scheduleAtFixedRate(cg, 1000, 5 * 60000);
+		timer.scheduleAtFixedRate(cg, 20000, 5 * 60000);
 		System.out.println("FetcherServlet init oldu...");
 		cg.setRun(true);
 	}
