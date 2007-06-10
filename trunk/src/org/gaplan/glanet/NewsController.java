@@ -48,6 +48,7 @@ public class NewsController {
 			news.setDate(itm.getPubDate());
 			news.setDescription(itm.getDescription());
 			news.setLink(itm.getLink());
+                        news.setContent(itm.toString());
 			allNews.add(news);
 		}
 		return allNews;
