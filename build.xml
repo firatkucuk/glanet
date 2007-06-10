@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<project name="glanet" basedir="." default="build">
+  <property name="src.dir" value="src"/>
+  <property name="web.dir" value="WebContent"/>
+  <property name="build.dir" value="${web.dir}/WEB-INF/classes"/>
+  <property name="name" value="glanet"/>
+  
+  <path id="master-classpath">
+    <fileset dir="${web.dir}/WEB-INF/lib">
+      <include name="*.jar"/>
+    </fileset>
+    <fileset dir="/usr/share/tomcat5.5/common/lib">
+      <include name="*.jar"/>
+    </fileset>
+    <pathelement path="${build.dir}"/>
+  </path>
+  <target name="build" description="ana derleme">
+    <mkdir dir="${build.dir}"/>
+    <javac destdir="${build.dir}" target="1.5" debug="true"
+           deprecation="false" optimize="true" failonerror="true">
+      <src path="${src.dir}"/>
+      <classpath refid="master-classpath"/>
+    </javac>
+<!--     <native2ascii encoding="UTF-8" src="${src.dir}" dest="${build.dir}" -->
+<!--                   includes="**/*.properties" /> -->
+  </target>
+  
+  <target name="war" depends="build" description="war yapar">
+    <war destfile="${name}.war"
+         webxml="${web.dir}/WEB-INF/web.xml">
+      <fileset dir="${web.dir}">
+        <include name="**/*.*"/>
+      </fileset>
+    </war>
+  </target>
+</project>
