@@ -21,8 +21,6 @@ public class NewsController {
 	public static ArrayList<BlogItem> fetchAll(String newsUrl, String fullName) {
 		ArrayList<BlogItem> allNews = new ArrayList<BlogItem>();
 		RSSHandler hand = new RSSHandler();
-		//String newsUrl = "http://pipes.yahoo.com/pipes/pipe.run?_id=En_Ju3762xGGxr6AqGIyXQ&_render=rss";
-		//String newsUrl = "http://www.penguenyuvasi.org/feeds/posts/default?alt=rss";
 		try {
 			URL u = new URL(newsUrl);
 			RSSParser.parseXmlFile(u, hand, false);
