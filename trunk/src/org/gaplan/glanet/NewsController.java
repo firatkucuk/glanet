@@ -18,7 +18,7 @@ import org.gnu.stealthp.rsslib.RSSParser;
  */
 @SuppressWarnings("unchecked")
 public class NewsController {
-	public static ArrayList<BlogItem> fetchAll(String newsUrl, String fullName) {
+	public static ArrayList<BlogItem> fetchAll(String newsUrl, String fullName, String headUrl) {
 		ArrayList<BlogItem> allNews = new ArrayList<BlogItem>();
 		RSSHandler hand = new RSSHandler();
 		try {
@@ -47,6 +47,7 @@ public class NewsController {
 			news.setDescription(itm.getDescription());
 			news.setLink(itm.getLink());
                         news.setContent(itm.toString());
+                        news.setHeadUrl(headUrl);
 			allNews.add(news);
 		}
 		return allNews;

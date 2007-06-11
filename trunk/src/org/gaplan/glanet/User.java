@@ -13,6 +13,8 @@ public class User {
 	private String fullName;
 	private String rssUrl;
 	private String email;
+        private String headUrl;
+
 	/**
 	 * @return the userName
 	 */
@@ -73,4 +75,13 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+    public String getHeadUrl() {
+        return headUrl;
+    }
+
+    public void setHeadUrl(String headUrl) {
+        this.headUrl = headUrl;
+    }
+
 }
