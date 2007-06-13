@@ -6,7 +6,7 @@ import javax.faces.context.FacesContext;
 
 @SuppressWarnings("unchecked")
 public class Settings {
-	private String currentTheme;
+    private String currentTheme;
 
     public Settings() {
         this.currentTheme = "turuncu";
