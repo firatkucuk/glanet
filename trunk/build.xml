@@ -1,22 +1,23 @@
 <?xml version="1.0"?>
-<project name="glanet" basedir="." default="build">
+<project name="${app.name}" basedir="." default="build">
+  <property file="build.properties"/>
   <property name="src.dir" value="src"/>
-  <property name="web.dir" value="WebContent"/>
+  <property name="web.dir" value="war"/>
   <property name="build.dir" value="${web.dir}/WEB-INF/classes"/>
-  <property name="name" value="glanet"/>
+  <property name="name" value="${app.name}"/>
   
   <path id="master-classpath">
     <fileset dir="${web.dir}/WEB-INF/lib">
       <include name="*.jar"/>
     </fileset>
-    <fileset dir="/usr/share/tomcat5.5/common/lib">
+    <fileset dir="/opt/resin/lib">
       <include name="*.jar"/>
     </fileset>
     <pathelement path="${build.dir}"/>
   </path>
-  <target name="build" description="ana derleme">
+  <target name="build" description="derliyoruz">
     <mkdir dir="${build.dir}"/>
-    <javac destdir="${build.dir}" target="1.5" debug="true"
+    <javac destdir="${build.dir}" target="1.6" debug="true"
            deprecation="false" optimize="true" failonerror="true">
       <src path="${src.dir}"/>
       <classpath refid="master-classpath"/>
@@ -25,12 +26,25 @@
 <!--                   includes="**/*.properties" /> -->
   </target>
   
-  <target name="war" depends="build" description="war yapar">
+  <target name="deploy" depends="build" description="deploy ediyoruz">
+    <copy todir="${deploy.path}/${name}" preservelastmodified="true">
+      <fileset dir="${web.dir}">
+        <include name="**/*.*"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="deploywar" depends="build" description="belki war yapmak isteyebiliriz, çok lazım olmayacak ama bulunsun...">
     <war destfile="${name}.war"
          webxml="${web.dir}/WEB-INF/web.xml">
       <fileset dir="${web.dir}">
         <include name="**/*.*"/>
       </fileset>
     </war>
+    <copy todir="${deploy.path}" preservelastmodified="true">
+      <fileset dir=".">
+        <include name="*.war"/>
+      </fileset>
+    </copy>
   </target>
 </project>
