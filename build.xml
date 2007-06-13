@@ -20,8 +20,6 @@
 
     <delete dir="${build.dir}" />
     <delete dir="${dist.dir}" />
-    <delete dir="${appserver.webapps}/${app.name}" />
-    <delete file="${appserver.webapps}/${app.name}.war" />
   </target>
 
 
@@ -53,10 +51,12 @@
   </target>
 
 
-  <target name="deploy" description="Deploys war package" depends="war">
+  <target name="deploy" description="Deploys war package">
     <echo message="DEPLOYING WAR PACKAGE ..." />
     <echo message="---------------------------------------------------------" />
 
+    <delete dir="${appserver.webapps}/${app.name}" />
+    <delete file="${appserver.webapps}/${app.name}.war" />
     <unzip src="${dist.dir}/${app.name}.war" dest="${appserver.webapps}/${app.name}" />
   </target>
 
