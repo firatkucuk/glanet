@@ -2,8 +2,10 @@
 <web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
 	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	     xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
-  <description>Facelets StarterKit</description>
+  <description>Glanet (www.gaplan.org)</description>
   <display-name>glanet</display-name>
+  <system-property javax.xml.parsers.DocumentBuilderFactory="org.apache.xerces.jaxp.DocumentBuilderFactoryImpl" />
+  <system-property javax.xml.parsers.SAXParserFactory="org.apache.xerces.jaxp.SAXParserFactoryImpl" />
   <context-param>
 	<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
 	<param-value>.xhtml</param-value>
