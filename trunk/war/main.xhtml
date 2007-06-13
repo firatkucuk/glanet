@@ -1,13 +1,13 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:c="http://java.sun.com/jstl/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	template="/WEB-INF/templates/layout.xhtml">
-	<ui:define name="userlist">
-                <h1>» Gaplanlar</h1>
-		<ul>
-			<c:forEach items="#{Users.list}" var="user">
-                            <li><a class="kullanici" href="#{user.rssUrl}"><img src="img/rss.png" /></a> <a class="kullanici" href="#{user.url}">#{user.fullName}</a></li>
-			</c:forEach>
-		</ul>
-	</ui:define>
+	            xmlns:c="http://java.sun.com/jstl/core"
+	            xmlns:h="http://java.sun.com/jsf/html"
+	            template="/WEB-INF/templates/layout.xhtml">
+  <ui:define name="userlist">
+    <h1>» Gaplanlar</h1>
+	<ul>
+	  <c:forEach items="#{Users.list}" var="user">
+        <li><a class="kullanici" href="#{user.rssUrl}"><img src="img/rss.png" /></a> <a class="kullanici" href="#{user.url}">#{user.fullName}</a></li>
+	  </c:forEach>
+	</ul>
+  </ui:define>
 </ui:composition>
