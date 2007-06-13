@@ -1,6 +1,3 @@
-/**
- *
- */
 package org.gaplan.glanet;
 
 import java.text.DateFormat;
@@ -12,10 +9,6 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimerTask;
 
-/**
- * @author cafer
- *
- */
 public class ContentGenerator extends TimerTask {
     
     private ArrayList<BlogItem> items;
@@ -41,7 +34,7 @@ public class ContentGenerator extends TimerTask {
                     int retval = 0;
                     try {
                         String format = "EEE, dd MMM yyyy HH:mm:ss Z";
-                        DateFormat df =	new SimpleDateFormat(format, new Locale("en", "US"));
+                        DateFormat df = new SimpleDateFormat(format, new Locale("en", "US"));
                         Date d1 = df.parse(o1.getDate());
                         Date d2 = df.parse(o2.getDate());
                         if (d1.getTime() < d2.getTime()) {
@@ -69,19 +62,11 @@ public class ContentGenerator extends TimerTask {
             System.out.println("content updated..." + new Date());
         }
     }
-    
-    
-    /**
-     * @return the run
-     */
+
     public boolean isRun() {
         return run;
     }
-    
-    
-    /**
-     * @param run the run to set
-     */
+
     public void setRun(boolean run) {
         this.run = run;
     }
