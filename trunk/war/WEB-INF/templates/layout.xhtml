@@ -1,86 +1,86 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:c="http://java.sun.com/jstl/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets" lang="tr" xml:lang="tr">
- <head>
-  <title><ui:insert name="title">Gaplan Gezegeni</ui:insert></title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta http-equiv="Content-Language" content="tr" />
-  <link rel="stylesheet" type="text/css" href="css/common.css" />
-  <link rel="stylesheet" type="text/css" href="css/#{Settings.currentTheme}.css" />
-  <link rel="alternate" type="application/rss+xml" title="Gaplan Gezegeni" href="rss.jsf" />
- </head>
- <body>
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" lang="tr" xml:lang="tr">
+  <head>
+    <title><ui:insert name="title">Gaplan Gezegeni</ui:insert></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Language" content="tr" />
+    <link rel="stylesheet" type="text/css" href="css/common.css" />
+    <link rel="stylesheet" type="text/css" href="css/#{Settings.currentTheme}.css" />
+    <link rel="alternate" type="application/rss+xml" title="Gaplan Gezegeni" href="rss.jsf" />
+  </head>
+  <body>
 
-  <!-- *** [Ana Tablo] ***************************************************** -->
-  <table cellpadding="0" cellspacing="0" width="100%">
+    <!-- *** [Ana Tablo] ***************************************************** -->
+    <table cellpadding="0" cellspacing="0" width="100%">
 
-   <tr>
-    <td id="ustCubukSol">
-     <div id="gzegenResim" align="right">&nbsp;</div>
-    </td>
-    <td id="ustCubukSag">
-     <div align="right" style="height:11px;width:100px;padding:3px;background-color:#eeeeee;">
-      <h:form>
-       <c:forEach items="#{Settings.themes}" var="theme">
-        <h:commandLink action="#{Settings.changeTheme}"><f:param name="theme" value="#{theme}" /><img class="#{theme}_box" src="img/spacer.gif" style="width:10px;height:10px;border:0px;"  /></h:commandLink>
-       </c:forEach>
-      </h:form>
-     </div>
-    </td>
-   </tr>
-
-   <tr>
-    <td valign="top">
-     <!-- *** [Orta Alan Tablosu] ****************************************** -->
-
-     <table cellpadding="0" cellspacing="0" width="100%">
       <tr>
-       <td id="tanitimAlani">
-        <div id="tanitimResim" align="right"></div>
-       </td>
+        <td id="ustCubukSol">
+          <div id="gzegenResim" align="right">&nbsp;</div>
+        </td>
+        <td id="ustCubukSag">
+          <div align="right" style="height:11px;width:100px;padding:3px;background-color:#eeeeee;">
+            <h:form>
+              <c:forEach items="#{Settings.themes}" var="theme">
+                <h:commandLink action="#{Settings.changeTheme}"><f:param name="theme" value="#{theme}" /><img class="#{theme}_box" src="img/spacer.gif" style="width:10px;height:10px;border:0px;"  /></h:commandLink>
+              </c:forEach>
+            </h:form>
+          </div>
+        </td>
       </tr>
 
       <tr>
-       <td id="iletiAlani">
-        <table id="iletiTablosu" cellpadding="0" cellspacing="10">
-         <c:forEach items="#{Blogs.all}" var="blog">
-          <tr>
-           <td valign="top"><a href="#{blog.link}"><img src="#{blog.headUrl}" /></a></td>
-           <td>
-            <b><a href="#{blog.link}">[#{blog.author}] - #{blog.title}</a></b><br /><br />
-            <div style="width: 600px;"><f:verbatim>#{blog.description}</f:verbatim></div>
-            <div align="center">
-             <br />
-             <a href="http://del.icio.us/post?url=#{blog.link}" rel="nofollow" title="Bookmark this this page on del.icio.us."><img alt="delicious" src="img/delicious.png" /></a> |
-             <a href="http://digg.com/submit?phase=2&amp;url=#{blog.link}" rel="nofollow" title="Digg this this page on digg.com."><img alt="digg" src="img/digg.png" /></a> |
-             <a href="http://reddit.com/submit?url=#{blog.link}" rel="nofollow" title="Submit this this page on reddit.com."><img alt="reddit" src="img/reddit.png" /></a> |
-             <a href="http://ma.gnolia.com/bookmarklet/add?url=#{blog.link}" rel="nofollow" title="Submit this this page on ma.gnolia.com."><img alt="magnoliacom" src="img/magnoliacom.png" /></a> |
-             <a href="http://www.newsvine.com/_tools/seed&amp;save?u=#{blog.link}" rel="nofollow" title="Submit this this page on newsvine.com."><img alt="newsvine" src="img/newsvine.png" /></a> |
-             <a href="http://www.furl.net/storeIt.jsp?u=#{blog.link}" rel="nofollow" title="Submit this this page on furl.net."><img alt="furl" src="img/furl.png" /></a> |
-             <a href="http://www.google.com/bookmarks/mark?op=add&amp;bkmk=#{blog.link}" rel="nofollow" title="Bookmark this this page on Google."><img alt="google" src="img/google.png" /></a> |
-             <a href="http://myweb2.search.yahoo.com/myresults/bookmarklet?u=#{blog.link}" rel="nofollow" title="Bookmark this this page on Yahoo."><img alt="yahoo" src="img/yahoo.png" /></a>
-            </div>
-           </td>
-          </tr>
-         </c:forEach>
-        </table>
-       </td>
-      </tr>
-     </table>
-     <!-- *** [Orta Alan Tablosu Sonu] ************************************* -->
-    </td>
-    <td id="sagCubuk">
-     <ui:insert name="userlist" />
-    </td>
-   </tr>
+        <td valign="top">
+          <!-- *** [Orta Alan Tablosu] ****************************************** -->
 
-   <tr>
-    <td id="altCubuk" colspan="2">&#160;</td>
-   </tr>
-  </table>
-  <!-- *** [Ana Tablo Sonu] ************************************************ -->
- </body>
+          <table cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+              <td id="tanitimAlani">
+                <div id="tanitimResim" align="right"></div>
+              </td>
+            </tr>
+
+            <tr>
+              <td id="iletiAlani">
+                <table id="iletiTablosu" cellpadding="0" cellspacing="10">
+                  <c:forEach items="#{Blogs.all}" var="blog">
+                    <tr>
+                      <td valign="top"><a href="#{blog.link}"><img src="#{blog.headUrl}" /></a></td>
+                      <td>
+                        <b><a href="#{blog.link}">[#{blog.author}] - #{blog.title}</a></b><br /><br />
+                        <div style="width: 600px;"><f:verbatim>#{blog.description}</f:verbatim></div>
+                        <div align="center">
+                          <br />
+                          <a href="http://del.icio.us/post?url=#{blog.link}" rel="nofollow" title="Bookmark this this page on del.icio.us."><img alt="delicious" src="img/delicious.png" /></a> |
+                          <a href="http://digg.com/submit?phase=2&amp;url=#{blog.link}" rel="nofollow" title="Digg this this page on digg.com."><img alt="digg" src="img/digg.png" /></a> |
+                          <a href="http://reddit.com/submit?url=#{blog.link}" rel="nofollow" title="Submit this this page on reddit.com."><img alt="reddit" src="img/reddit.png" /></a> |
+                          <a href="http://ma.gnolia.com/bookmarklet/add?url=#{blog.link}" rel="nofollow" title="Submit this this page on ma.gnolia.com."><img alt="magnoliacom" src="img/magnoliacom.png" /></a> |
+                          <a href="http://www.newsvine.com/_tools/seed&amp;save?u=#{blog.link}" rel="nofollow" title="Submit this this page on newsvine.com."><img alt="newsvine" src="img/newsvine.png" /></a> |
+                          <a href="http://www.furl.net/storeIt.jsp?u=#{blog.link}" rel="nofollow" title="Submit this this page on furl.net."><img alt="furl" src="img/furl.png" /></a> |
+                          <a href="http://www.google.com/bookmarks/mark?op=add&amp;bkmk=#{blog.link}" rel="nofollow" title="Bookmark this this page on Google."><img alt="google" src="img/google.png" /></a> |
+                          <a href="http://myweb2.search.yahoo.com/myresults/bookmarklet?u=#{blog.link}" rel="nofollow" title="Bookmark this this page on Yahoo."><img alt="yahoo" src="img/yahoo.png" /></a>
+                        </div>
+                      </td>
+                    </tr>
+                  </c:forEach>
+                </table>
+              </td>
+            </tr>
+          </table>
+          <!-- *** [Orta Alan Tablosu Sonu] ************************************* -->
+        </td>
+        <td id="sagCubuk">
+          <ui:insert name="userlist" />
+        </td>
+      </tr>
+
+      <tr>
+        <td id="altCubuk" colspan="2">&#160;</td>
+      </tr>
+    </table>
+    <!-- *** [Ana Tablo Sonu] ************************************************ -->
+  </body>
 </html>
