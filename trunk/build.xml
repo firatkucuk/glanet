@@ -1,50 +1,63 @@
 <?xml version="1.0"?>
-<project name="${app.name}" basedir="." default="build">
-  <property file="build.properties"/>
-  <property name="src.dir" value="src"/>
-  <property name="web.dir" value="war"/>
-  <property name="build.dir" value="${web.dir}/WEB-INF/classes"/>
-  <property name="name" value="${app.name}"/>
-  
+
+<project name="${app.name}" basedir="." default="war">
+  <property file="build.properties" />
+
   <path id="master-classpath">
-    <fileset dir="${web.dir}/WEB-INF/lib">
-      <include name="*.jar"/>
+    <fileset dir="${lib.dir}">
+      <include name="*.jar" />
     </fileset>
-    <fileset dir="/opt/resin/lib">
-      <include name="*.jar"/>
+    <fileset dir="${appserver.lib}">
+      <include name="*.jar" />
     </fileset>
     <pathelement path="${build.dir}"/>
   </path>
-  <target name="build" description="derliyoruz">
-    <mkdir dir="${build.dir}"/>
-    <javac destdir="${build.dir}" target="1.6" debug="true"
+
+
+  <target name="clean" description="Deletes all generated files">
+    <echo message="CLEANING GENERATED FILES ..." />
+    <echo message="---------------------------------------------------------" />
+
+    <delete dir="${build.dir}" />
+    <delete dir="${dist.dir}" />
+    <delete dir="${appserver.webapps}/${app.name}" />
+    <delete file="${appserver.webapps}/${app.name}.war" />
+  </target>
+
+
+  <target name="build" description="Builds source files" depends="clean">
+    <echo message="BUILDING SOURCE FILES ..." />
+    <echo message="---------------------------------------------------------" />
+
+    <mkdir dir="${build.dir}" />
+    <javac destdir="${build.dir}" target="${javac.target}"
+           source="${javac.source}" debug="true"
            deprecation="false" optimize="true" failonerror="true">
-      <src path="${src.dir}"/>
-      <classpath refid="master-classpath"/>
+      <src path="${src.dir}" />
+      <classpath refid="master-classpath" />
     </javac>
-<!--     <native2ascii encoding="UTF-8" src="${src.dir}" dest="${build.dir}" -->
-<!--                   includes="**/*.properties" /> -->
   </target>
-  
-  <target name="deploy" depends="build" description="deploy ediyoruz">
-    <copy todir="${deploy.path}/${name}" preservelastmodified="true">
-      <fileset dir="${web.dir}">
-        <include name="**/*.*"/>
-      </fileset>
-    </copy>
-  </target>
-  
-  <target name="deploywar" depends="build" description="belki war yapmak isteyebiliriz, çok lazım olmayacak ama bulunsun...">
-    <war destfile="${name}.war"
-         webxml="${web.dir}/WEB-INF/web.xml">
-      <fileset dir="${web.dir}">
-        <include name="**/*.*"/>
-      </fileset>
+
+
+  <target name="war" description="Packages all content" depends="build">
+    <echo message="COLLECTING FILES INTO A WAR PACKAGE ..." />
+    <echo message="---------------------------------------------------------" />
+
+    <mkdir dir="${dist.dir}" />
+    <war destfile="${dist.dir}/${app.name}.war" webxml="${conf.dir}/web.xml">
+      <fileset dir="${web.dir}" />
+      <classes dir="${build.dir}" />
+      <lib dir="${lib.dir}" />
     </war>
-    <copy todir="${deploy.path}" preservelastmodified="true">
-      <fileset dir=".">
-        <include name="*.war"/>
-      </fileset>
-    </copy>
+
   </target>
+
+
+  <target name="deploy" description="Deploys war package" depends="war">
+    <echo message="DEPLOYING WAR PACKAGE ..." />
+    <echo message="---------------------------------------------------------" />
+
+    <unzip src="${dist.dir}/${app.name}.war" dest="${appserver.webapps}/${app.name}" />
+  </target>
+
 </project>
