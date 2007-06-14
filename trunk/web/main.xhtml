@@ -6,7 +6,7 @@
     <h1>» Gaplanlar</h1>
     <ul>
       <c:forEach items="#{Users.list}" var="user">
-        <li><a class="kullanici" href="#{user.rssUrl}"><img src="img/rss.png" /></a> <a class="kullanici" href="#{user.url}">#{user.fullName}</a></li>
+        <li><a class="kullanici" href="#{user.feedUrl}"><img src="img/rss.png" /></a> <a class="kullanici" href="#{user.blogUrl}">#{user.fullName}</a></li>
       </c:forEach>
     </ul>
   </ui:define>

@@ -1,4 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
+
 <rss version="2.0"
      xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
      xmlns:content="http://purl.org/rss/1.0/modules/content/"
@@ -11,14 +12,14 @@
       <title><![CDATA[Gaplan Gezegeni]]></title>
       <description><f:verbatim><![CDATA[gaplan takımının üyelerine ait gezegen]]></f:verbatim></description>
       <link>http://www.gaplan.org/rss.xhtml</link>
-      <c:forEach items="#{Blogs.all}" var="blog">
+      <c:forEach items="#{Posts.allPosts}" var="post">
         <item>
-          <title><f:verbatim>#{blog.title}</f:verbatim></title>
-          <link>#{blog.link}</link>
-          <guid isPermaLink="false">#{blog.link}</guid>
-          <pubDate>#{blog.date}</pubDate>
-          <description><f:verbatim><![CDATA[#{blog.description}]]></f:verbatim></description>
-          <content:encoded><f:verbatim><![CDATA[#{blog.content}]]></f:verbatim></content:encoded>
+          <title><f:verbatim>[#{post.user.fullName}] - #{post.rss.title}</f:verbatim></title>
+          <link>#{post.rss.link}</link>
+          <guid isPermaLink="false">#{post.rss.link}</guid>
+          <pubDate>#{post.rss.pubDate}</pubDate>
+          <description><f:verbatim><![CDATA[#{post.rss.description}]]></f:verbatim></description>
+          <content:encoded><f:verbatim><![CDATA[#{post.rss.description}]]></f:verbatim></content:encoded>
         </item>
       </c:forEach>
     </channel>

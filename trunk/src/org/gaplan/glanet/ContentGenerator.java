@@ -2,10 +2,10 @@ package org.gaplan.glanet;
 
 /* ************************************************************************** *\
  * Proje            / Project        : Glanet
- * Dosya            / File           : ContentGenerator.java
+ * Dosya            / File           : FetcherServlet.java
  * Lisans           / Licence        : GPL
  * Yazar            / Author         : Cafer ŞİMŞEK, Fırat KÜÇÜK
- * Son Güncelleme   / Last Update    : 14 Haz, 2007 Prş 01:54:22
+ * Son Güncelleme   / Last Update    : 15 Haz, 2007 Cum 00:09:16
  * Kodlama          / Encoding       : UTF-8
  * Satır Sonları    / Line Endings   : LF
  *
@@ -41,14 +41,10 @@ package org.gaplan.glanet;
 // ### [TR] GEREKLİ SINIFLAR ###################################################
 // ### [EN] REQUIRED CLASSES ###################################################
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.Locale;
-import java.util.TimerTask;
+import java.net.URL;
+import java.text.*;
+import java.util.*;
+import org.gnu.stealthp.rsslib.*;
 
 
 
@@ -62,8 +58,8 @@ public class ContentGenerator extends TimerTask {
     // ### [TR] ALANLAR ########################################################
     // ### [EN] FIELDS #########################################################
 
-    private ArrayList<BlogItem>  items;
-    private boolean              run;
+    private boolean             isRuning;
+    private Users               users;
 
 
 
@@ -72,8 +68,9 @@ public class ContentGenerator extends TimerTask {
 
     // +++ [ContentGenerator] ++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    public ContentGenerator(ArrayList<BlogItem> items) {
-        this.items = items;
+    public ContentGenerator() {
+
+        users = new Users();
     }
 
 
@@ -81,54 +78,98 @@ public class ContentGenerator extends TimerTask {
     // --- [run] ---------------------------------------------------------------
 
     public void run() {
-        if (isRun()) {
-            System.out.println("content update stared..." + new Date());
-            ArrayList<BlogItem> tempList = new ArrayList<BlogItem>();
-            Users users = new Users();
+
+        if (isRuning) {
+
+            System.out.println("[Glanet] - Content Update Started..." + new Date());
+
+            ArrayList<UserPost> tempPostList = new ArrayList<UserPost>();
+
+            users.reload();
+
             for (User user : users.getList()) {
-                System.out.println(user.getUserName() + " basladi");
-                tempList.addAll(NewsController.fetchAll(user.getRssUrl(), user.getFullName(), user.getHeadUrl()));
-                System.out.println(user.getUserName() + " bitti");
+                System.out.println("[Glanet] - " + user.getUserName() +
+                    " Content Generation Started!");
+                tempPostList.addAll(fetchAll(user));
+                System.out.println("[Glanet] - " + user.getUserName() +
+                    " Content Generation Accomplished!");
             }
-            Collections.sort(tempList, new Comparator<BlogItem>() {
-                public int compare(BlogItem o1, BlogItem o2) {
-                    int retval = 0;
+
+            Collections.sort(tempPostList, new Comparator<UserPost>() {
+                public int compare(UserPost blogItem1, UserPost blogItem2) {
+
+                    int returnValue = 0;
+
                     try {
-                        String format = "EEE, dd MMM yyyy HH:mm:ss Z";
-                        DateFormat df = new SimpleDateFormat(format, new Locale("en", "US"));
-                        Date d1 = df.parse(o1.getDate());
-                        Date d2 = df.parse(o2.getDate());
-                        if (d1.getTime() < d2.getTime()) {
-                            retval = 1;
-                        }
-                        if (d1.getTime() > d2.getTime()) {
-                            retval = -1;
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    return retval;
+
+                        DateFormat dateFormat = new SimpleDateFormat(
+                            "EEE, dd MMM yyyy HH:mm:ss Z",
+                            new Locale("en", "US")
+                        );
+
+                        Date date1 = dateFormat.parse(blogItem1.getRss().getPubDate()),
+                             date2 = dateFormat.parse(blogItem2.getRss().getPubDate());
+
+                        if (date1.getTime() < date2.getTime())
+                            returnValue = 1;
+                        else if (date1.getTime() > date2.getTime())
+                            returnValue = -1;
+
+                    } catch (Exception e) { e.printStackTrace(); }
+
+                    return returnValue;
                 }
             });
-            items.clear();
+
+            ArrayList<UserPost> userPosts = FetcherServlet.getAllPosts();
+            userPosts.clear();
+
+            // TRUNCATING BLOG STREAM
             int count = 0;
-            for (BlogItem b : tempList) {
-                if (count < 20) {
-                    items.add(b);
-                } else {
-                    break;
-                }
+
+            for (UserPost b : tempPostList) {
+                if (count < 20) userPosts.add(b);
+                else break;
                 count++;
             }
-            System.out.println("content updated..." + new Date());
+
+            System.out.println("[Glanet] - Content Updated ! - " + new Date());
         }
     }
 
-    public boolean isRun() {
-        return run;
+
+
+    // --- [setRuning] ---------------------------------------------------------
+
+    public void setRuning(boolean state) {
+
+        isRuning = state;
     }
 
-    public void setRun(boolean run) {
-        this.run = run;
+
+    public static ArrayList<UserPost> fetchAll(User user) {
+
+        ArrayList<UserPost> allPosts   = new ArrayList<UserPost>();
+        RSSHandler          rssHandler = new RSSHandler();
+
+        try {
+
+            URL url = new URL(user.getFeedUrl());
+            RSSParser.parseXmlFile(url, rssHandler, false);
+        } catch(Exception e) { e.printStackTrace();}
+
+        RSSChannel channel = rssHandler.getRSSChannel();
+        LinkedList rssList = channel.getItems();
+
+        for(int i = 0; i < rssList.size(); i++) {
+            UserPost post = new UserPost();
+
+            post.setRss((RSSItem)rssList.get(i));
+            post.setUser(user);
+
+            allPosts.add(post);
+        }
+
+        return allPosts;
     }
 }
