@@ -5,7 +5,7 @@ package org.gaplan.glanet;
  * Dosya            / File           : FetcherServlet.java
  * Lisans           / Licence        : GPL
  * Yazar            / Author         : Cafer ŞİMŞEK, Fırat KÜÇÜK
- * Son Güncelleme   / Last Update    : 14 Haz, 2007 Prş 01:32:50
+ * Son Güncelleme   / Last Update    : 15 Haz, 2007 Cum 00:09:27
  * Kodlama          / Encoding       : UTF-8
  * Satır Sonları    / Line Endings   : LF
  *
@@ -58,9 +58,11 @@ public class FetcherServlet extends HttpServlet {
     // ### [TR] ALANLAR ########################################################
     // ### [EN] FIELDS #########################################################
 
-    public  static       ArrayList<BlogItem> allBlogItems;
+    private static       ArrayList<UserPost> allPosts         = new ArrayList<UserPost>();
+    private static       ArrayList<User>     userList         = new ArrayList<User>();
+    private static       String              propertiesPath;
     private static final long                serialVersionUID = 1807930740483845702L;
-    private              Timer               timer;
+    private              Timer               timer            = new Timer();
     private              ContentGenerator    contentGenerator;
 
 
@@ -71,16 +73,18 @@ public class FetcherServlet extends HttpServlet {
     // --- [init] --------------------------------------------------------------
 
     public void init() throws ServletException {
-        System.out.println("Initializing Glanet's FetcherServlet ...");
 
-        allBlogItems     = new ArrayList<BlogItem>();
-        timer            = new Timer();
-        contentGenerator = new ContentGenerator(allBlogItems);
-        timer.scheduleAtFixedRate(contentGenerator, 20000, 5 * 60000);
+        System.out.println("[Glanet] - Initializing FetcherServlet ...");
 
-        System.out.println("Glanet's FetcherServlet initialized !");
+        propertiesPath = this.getServletContext().getRealPath("") +
+            "/WEB-INF/glanet.properties";
 
-        contentGenerator.setRun(true);
+        contentGenerator = new ContentGenerator();
+        timer.scheduleAtFixedRate(contentGenerator, 5000, 60000);
+
+        System.out.println("[Glanet] - FetcherServlet initialized !");
+
+        contentGenerator.setRuning(true);
     }
 
 
@@ -88,23 +92,54 @@ public class FetcherServlet extends HttpServlet {
     // --- [destroy] -----------------------------------------------------------
 
     public void destroy() {
-        contentGenerator.setRun(false);
+
+        contentGenerator.setRuning(false);
         timer.cancel();
-        System.out.println("Glanet Fetch Timer Cancelled!");
+        System.out.println("[Glanet] - Fetch Timer Cancelled!");
     }
 
 
 
-    // --- [getAllItems] -------------------------------------------------------
+    // --- [getUserList] -----------------------------------------------------------
 
-    public static ArrayList<BlogItem> getAllItems() {
-        return allBlogItems;
+    public static ArrayList<User> getUserList() {
+
+        return userList;
     }
 
 
-    // --- [setAllItems] -------------------------------------------------------
 
-    public static void setAllItems(ArrayList<BlogItem> items) {
-        FetcherServlet.allBlogItems = items;
+    // --- [setUserList] -----------------------------------------------------------
+
+    public static void setUserList(ArrayList<User> users) {
+
+        userList = users;
+    }
+
+
+
+    // --- [getPropertiesPath] -----------------------------------------------------------
+
+    public static String getPropertiesPath() {
+
+        return propertiesPath;
+    }
+
+
+
+    // --- [getAllPosts] -----------------------------------------------------------
+
+    public static ArrayList<UserPost> getAllPosts() {
+
+        return allPosts;
+    }
+
+
+
+    // --- [setAllPosts] -----------------------------------------------------------
+
+    public static void setAllPosts(ArrayList<UserPost> aAllPosts) {
+
+        allPosts = aAllPosts;
     }
 }

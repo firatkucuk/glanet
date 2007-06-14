@@ -1,11 +1,12 @@
 package org.gaplan.glanet;
 
+
 /* ************************************************************************** *\
  * Proje            / Project        : Glanet
- * Dosya            / File           : Settings.java
+ * Dosya            / File           : UserPost.java
  * Lisans           / Licence        : GPL
  * Yazar            / Author         : Cafer ŞİMŞEK, Fırat KÜÇÜK
- * Son Güncelleme   / Last Update    : 15 Haz, 2007 Cum 00:09:51
+ * Son Güncelleme   / Last Update    : 15 Haz, 2007 Cum 00:10:14
  * Kodlama          / Encoding       : UTF-8
  * Satır Sonları    / Line Endings   : LF
  *
@@ -41,78 +42,68 @@ package org.gaplan.glanet;
 // ### [TR] GEREKLİ SINIFLAR ###################################################
 // ### [EN] REQUIRED CLASSES ###################################################
 
-import java.util.Map;
-import javax.faces.context.FacesContext;
+import org.gnu.stealthp.rsslib.RSSItem;
 
 
 
-// ### [TR] Settings SINIFI ##############################################
-// ### [EN] Settings CLASS #####################################################
+// ### [TR] UserPost SINIFI ####################################################
+// ### [EN] UserPost CLASS #####################################################
 
-public class Settings {
+public class UserPost {
 
 
 
     // ### [TR] ALANLAR ########################################################
     // ### [EN] FIELDS #########################################################
 
-    private String currentTheme;
+    private User    user;
+    private RSSItem rss;
 
 
 
     // ### [TR] METODLAR #######################################################
     // ### [EN] METHODS ########################################################
 
-    // +++ [Settings] ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // --- [getUser] -----------------------------------------------------------
 
-    public Settings() {
+    public User getUser() {
 
-        this.currentTheme = "turuncu";
+        return user;
     }
 
 
 
-    // --- [changeTheme] -------------------------------------------------------
+    // --- [setUser] -----------------------------------------------------------
 
-    public String changeTheme() {
+    public void setUser(User user) {
 
-        Map params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        setCurrentTheme((String) params.get("theme"));
-        return "ok";
+        this.user = user;
     }
 
 
 
-    // --- [getThemes] ---------------------------------------------------------
+    // --- [getRss] ------------------------------------------------------------
 
-    public String[] getThemes() {
+    public RSSItem getRss() {
 
-        String[] retval = new String[] {
-            "turuncu",
-            "kahve",
-            "lacivert",
-            "mavi",
-            "yesil"
-        };
-
-        return retval;
+        return rss;
     }
 
 
 
-    // --- [getCurrentTheme] ----------------------------------------------------
+    // --- [setRss] ------------------------------------------------------------
 
-    public String getCurrentTheme() {
+    public void setRss(RSSItem rss) {
 
-        return currentTheme;
+        this.rss = rss;
     }
 
 
 
-    // --- [setCurrentTheme] ---------------------------------------------------
+    // --- [getContent] --------------------------------------------------------
 
-    public void setCurrentTheme(String currentTheme) {
+    public String getContent() {
 
-        this.currentTheme = currentTheme;
+        return rss.toString();
     }
 }

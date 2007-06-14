@@ -2,10 +2,10 @@ package org.gaplan.glanet;
 
 /* ************************************************************************** *\
  * Proje            / Project        : Glanet
- * Dosya            / File           : Settings.java
+ * Dosya            / File           : Posts.java
  * Lisans           / Licence        : GPL
  * Yazar            / Author         : Cafer ŞİMŞEK, Fırat KÜÇÜK
- * Son Güncelleme   / Last Update    : 15 Haz, 2007 Cum 00:09:51
+ * Son Güncelleme   / Last Update    : 15 Haz, 2007 Cum 00:09:38
  * Kodlama          / Encoding       : UTF-8
  * Satır Sonları    / Line Endings   : LF
  *
@@ -41,78 +41,24 @@ package org.gaplan.glanet;
 // ### [TR] GEREKLİ SINIFLAR ###################################################
 // ### [EN] REQUIRED CLASSES ###################################################
 
-import java.util.Map;
-import javax.faces.context.FacesContext;
+import java.util.ArrayList;
 
 
 
-// ### [TR] Settings SINIFI ##############################################
-// ### [EN] Settings CLASS #####################################################
+// ### [TR] Posts SINIFI #######################################################
+// ### [EN] Posts CLASS ########################################################
 
-public class Settings {
-
-
-
-    // ### [TR] ALANLAR ########################################################
-    // ### [EN] FIELDS #########################################################
-
-    private String currentTheme;
+public class Posts {
 
 
 
     // ### [TR] METODLAR #######################################################
     // ### [EN] METHODS ########################################################
 
-    // +++ [Settings] ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // --- [getAllPosts] -------------------------------------------------------
 
-    public Settings() {
+    public ArrayList<UserPost> getAllPosts() {
 
-        this.currentTheme = "turuncu";
-    }
-
-
-
-    // --- [changeTheme] -------------------------------------------------------
-
-    public String changeTheme() {
-
-        Map params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        setCurrentTheme((String) params.get("theme"));
-        return "ok";
-    }
-
-
-
-    // --- [getThemes] ---------------------------------------------------------
-
-    public String[] getThemes() {
-
-        String[] retval = new String[] {
-            "turuncu",
-            "kahve",
-            "lacivert",
-            "mavi",
-            "yesil"
-        };
-
-        return retval;
-    }
-
-
-
-    // --- [getCurrentTheme] ----------------------------------------------------
-
-    public String getCurrentTheme() {
-
-        return currentTheme;
-    }
-
-
-
-    // --- [setCurrentTheme] ---------------------------------------------------
-
-    public void setCurrentTheme(String currentTheme) {
-
-        this.currentTheme = currentTheme;
+        return FetcherServlet.getAllPosts();
     }
 }

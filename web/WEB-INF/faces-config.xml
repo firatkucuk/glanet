@@ -13,18 +13,21 @@
   <managed-bean>
     <managed-bean-name>Users</managed-bean-name>
     <managed-bean-class>org.gaplan.glanet.Users</managed-bean-class>
-    <managed-bean-scope>request</managed-bean-scope>
+    <managed-bean-scope>application</managed-bean-scope>
   </managed-bean>
+
   <managed-bean>
     <managed-bean-name>Settings</managed-bean-name>
     <managed-bean-class>org.gaplan.glanet.Settings</managed-bean-class>
     <managed-bean-scope>session</managed-bean-scope>
   </managed-bean>
+
   <managed-bean>
-    <managed-bean-name>Blogs</managed-bean-name>
-    <managed-bean-class>org.gaplan.glanet.Blogs</managed-bean-class>
-    <managed-bean-scope>request</managed-bean-scope>
+    <managed-bean-name>Posts</managed-bean-name>
+    <managed-bean-class>org.gaplan.glanet.Posts</managed-bean-class>
+    <managed-bean-scope>application</managed-bean-scope>
   </managed-bean>
+
   <navigation-rule>
     <display-name>main.xhtml</display-name>
     <from-view-id>/main.xhtml</from-view-id>
