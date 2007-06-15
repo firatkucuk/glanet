@@ -2,7 +2,7 @@ package org.gaplan.glanet;
 
 /* ************************************************************************** *\
  * Proje            / Project        : Glanet
- * Dosya            / File           : FetcherServlet.java
+ * Dosya            / File           : ContentGenerator.java
  * Lisans           / Licence        : GPL
  * Yazar            / Author         : Cafer ŞİMŞEK, Fırat KÜÇÜK
  * Son Güncelleme   / Last Update    : 15 Haz, 2007 Cum 00:09:16
