@@ -128,9 +128,8 @@ public class ContentGenerator extends TimerTask {
             int count = 0;
 
             for (UserPost b : tempPostList) {
-                if (count < 20) userPosts.add(b);
+                if (count++ < 20) userPosts.add(b);
                 else break;
-                count++;
             }
 
             System.out.println("[Glanet] - Content Updated ! - " + new Date());
