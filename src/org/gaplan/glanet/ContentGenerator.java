@@ -81,17 +81,18 @@ public class ContentGenerator extends TimerTask {
 
         if (isRuning) {
 
-            System.out.println("[Glanet] - Content Update Started..." + new Date());
+            FetcherServlet.message("Updating Content ...");
 
             ArrayList<UserPost> tempPostList = new ArrayList<UserPost>();
 
             users.reload();
 
             for (User user : users.getList()) {
-                System.out.println("[Glanet] - " + user.getUserName() +
+
+                FetcherServlet.message(user.getUserName() +
                     " Content Generation Started!");
                 tempPostList.addAll(fetchAll(user));
-                System.out.println("[Glanet] - " + user.getUserName() +
+                FetcherServlet.message(user.getUserName() +
                     " Content Generation Accomplished!");
             }
 
@@ -132,7 +133,7 @@ public class ContentGenerator extends TimerTask {
                 else break;
             }
 
-            System.out.println("[Glanet] - Content Updated ! - " + new Date());
+            FetcherServlet.message("Content Updated!");
         }
     }
 
@@ -155,7 +156,9 @@ public class ContentGenerator extends TimerTask {
 
             URL url = new URL(user.getFeedUrl());
             RSSParser.parseXmlFile(url, rssHandler, false);
-        } catch(Exception e) { e.printStackTrace();}
+        } catch(RSSException e) {
+            FetcherServlet.message("Rss Connection Failed!");
+        } catch(Exception e) { e.printStackTrace(); }
 
         RSSChannel channel = rssHandler.getRSSChannel();
         LinkedList rssList = channel.getItems();

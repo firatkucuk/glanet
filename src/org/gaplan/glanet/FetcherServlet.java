@@ -42,6 +42,7 @@ package org.gaplan.glanet;
 // ### [EN] REQUIRED CLASSES ###################################################
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Timer;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -74,15 +75,15 @@ public class FetcherServlet extends HttpServlet {
 
     public void init() throws ServletException {
 
-        System.out.println("[Glanet] - Initializing FetcherServlet ...");
+        message("Initializing FetcherServlet ...");
 
         propertiesPath = this.getServletContext().getRealPath("") +
             "/WEB-INF/glanet.properties";
 
         contentGenerator = new ContentGenerator();
-        timer.scheduleAtFixedRate(contentGenerator, 5000, 60000);
+        timer.scheduleAtFixedRate(contentGenerator, 20000, 5 * 60000);
 
-        System.out.println("[Glanet] - FetcherServlet initialized !");
+        message("FetcherServlet initialized!");
 
         contentGenerator.setRuning(true);
     }
@@ -95,12 +96,12 @@ public class FetcherServlet extends HttpServlet {
 
         contentGenerator.setRuning(false);
         timer.cancel();
-        System.out.println("[Glanet] - Fetch Timer Cancelled!");
+        message("Fetch Timer Cancelled!");
     }
 
 
 
-    // --- [getUserList] -----------------------------------------------------------
+    // --- [getUserList] -------------------------------------------------------
 
     public static ArrayList<User> getUserList() {
 
@@ -109,7 +110,7 @@ public class FetcherServlet extends HttpServlet {
 
 
 
-    // --- [setUserList] -----------------------------------------------------------
+    // --- [setUserList] -------------------------------------------------------
 
     public static void setUserList(ArrayList<User> users) {
 
@@ -118,7 +119,7 @@ public class FetcherServlet extends HttpServlet {
 
 
 
-    // --- [getPropertiesPath] -----------------------------------------------------------
+    // --- [getPropertiesPath] -------------------------------------------------
 
     public static String getPropertiesPath() {
 
@@ -127,7 +128,7 @@ public class FetcherServlet extends HttpServlet {
 
 
 
-    // --- [getAllPosts] -----------------------------------------------------------
+    // --- [getAllPosts] -------------------------------------------------------
 
     public static ArrayList<UserPost> getAllPosts() {
 
@@ -136,10 +137,20 @@ public class FetcherServlet extends HttpServlet {
 
 
 
-    // --- [setAllPosts] -----------------------------------------------------------
+    // --- [setAllPosts] -------------------------------------------------------
 
     public static void setAllPosts(ArrayList<UserPost> aAllPosts) {
 
         allPosts = aAllPosts;
+    }
+
+
+
+    // --- [message] -----------------------------------------------------------
+
+    public static void message(String messageString) {
+
+        // TODO: System.out may be optional according to glanet properties file.
+        System.out.println("[Glanet] - " + new Date() + " - " + messageString);
     }
 }
