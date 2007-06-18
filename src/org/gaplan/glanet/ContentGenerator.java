@@ -58,8 +58,8 @@ public class ContentGenerator extends TimerTask {
     // ### [TR] ALANLAR ########################################################
     // ### [EN] FIELDS #########################################################
 
-    private boolean             isRuning;
-    private Users               users;
+    private boolean isRuning;
+    private Users   users;
 
 
 
@@ -89,10 +89,10 @@ public class ContentGenerator extends TimerTask {
 
             for (User user : users.getList()) {
 
-                FetcherServlet.message(user.getUserName() +
+                FetcherServlet.message(user.getFullName() +
                     " Content Generation Started!");
                 tempPostList.addAll(fetchAll(user));
-                FetcherServlet.message(user.getUserName() +
+                FetcherServlet.message(user.getFullName() +
                     " Content Generation Accomplished!");
             }
 
@@ -146,6 +146,9 @@ public class ContentGenerator extends TimerTask {
         isRuning = state;
     }
 
+
+
+    // --- [fetchAll] ----------------------------------------------------------
 
     public static ArrayList<UserPost> fetchAll(User user) {
 

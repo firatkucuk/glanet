@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+  <entry key="users.user1.fullName">Cafer ŞİMŞEK</entry>
+  <entry key="users.user1.email">cfb@cafer.org</entry>
+  <entry key="users.user1.blogURL">http://cfb.gaplan.org/</entry>
+  <entry key="users.user1.feedURL">http://cfb.gaplan.org/feeds/posts/default?alt=rss</entry>
+  <entry key="users.user1.userName">cfb</entry>
+  <entry key="users.user1.avatarURL">img/heads/tux1.png</entry>
+
+  <entry key="users.user2.fullName">Deniz KOÇAK</entry>
+  <entry key="users.user2.email">deniz@gaplan.org</entry>
+  <entry key="users.user2.blogURL">http://deniz.gaplan.org/</entry>
+  <entry key="users.user2.feedURL">http://cfb.gaplan.org/feeds/posts/default?alt=rss</entry>
+  <entry key="users.user2.userName">lenduha</entry>
+  <entry key="users.user2.avatarURL">img/heads/tux2.png</entry>
+
+  <entry key="users.user3.fullName">Fırat KÜÇÜK</entry>
+  <entry key="users.user3.email">firat@gaplan.org</entry>
+  <entry key="users.user3.blogURL">http://www.penguenyuvasi.org/</entry>
+  <entry key="users.user3.feedURL">http://www.penguenyuvasi.org/feeds/posts/default?alt=rss</entry>
+  <entry key="users.user3.userName">pismikrop</entry>
+  <entry key="users.user3.avatarURL">img/heads/tux3.png</entry>
+
+  <entry key="users.user4.fullName">Özgür KARATAŞ</entry>
+  <entry key="users.user4.email">okaratas@ozgurkaratas.com</entry>
+  <entry key="users.user4.blogURL">http://www.ozgurkaratas.com/</entry>
+  <entry key="users.user4.feedURL">http://www.ozgurkaratas.com/index.php/feed/</entry>
+  <entry key="users.user4.userName">okaratas</entry>
+  <entry key="users.user4.avatarURL">img/heads/tux4.png</entry>
+
+  <entry key="users.user5.fullName">Talat UYARER</entry>
+  <entry key="users.user5.email">talat@uyarer.com</entry>
+  <entry key="users.user5.blogURL">http://talat.uyarer.com/</entry>
+  <entry key="users.user5.feedURL">http://talat.uyarer.com/?feed=rss2</entry>
+  <entry key="users.user5.userName">talat</entry>
+  <entry key="users.user5.avatarURL">img/heads/tux5.png</entry>
+
+  <entry key="users.user6.fullName">Yılmaz UĞURLU</entry>
+  <entry key="users.user6.email">metoikos@2nci.com</entry>
+  <entry key="users.user6.blogURL">http://www.2nci.com/</entry>
+  <entry key="users.user6.feedURL">http://www.2nci.com/wordpress/feed</entry>
+  <entry key="users.user6.userName">metoikos</entry>
+  <entry key="users.user6.avatarURL">img/heads/tux6.png</entry>
+</properties>

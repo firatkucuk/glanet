@@ -5,7 +5,6 @@ package org.gaplan.glanet;
  * Dosya            / File           : Users.java
  * Lisans           / Licence        : GPL
  * Yazar            / Author         : Cafer ŞİMŞEK, Fırat KÜÇÜK
- * Son Güncelleme   / Last Update    : 15 Haz, 2007 Cum 00:09:03
  * Kodlama          / Encoding       : UTF-8
  * Satır Sonları    / Line Endings   : LF
  *
@@ -72,8 +71,9 @@ public class Users {
 
         try {
 
-            FileInputStream stream = new FileInputStream(FetcherServlet.getPropertiesPath());
-            properties.load(stream);
+            FileInputStream stream = new FileInputStream(
+                FetcherServlet.getPropertiesPath());
+            properties.loadFromXML(stream);
             stream.close();
         } catch (Exception ex) { ex.printStackTrace(); }
 
@@ -103,16 +103,17 @@ public class Users {
 
     public User getBlogUser(int number) {
 
-        String userFullName = properties.getProperty("user" + number + ".fullName");
+        String header       = "users.user" + number;
+        String userFullName = properties.getProperty(header + ".fullName");
 
         if (userFullName == null) return null;
 
         User user = new User(userFullName);
-        user.setEmail(properties.getProperty("user" + number + ".email"));
-        user.setBlogUrl(properties.getProperty("user" + number + ".blogURL"));
-        user.setFeedUrl(properties.getProperty("user" + number + ".feedURL"));
-        user.setUserName(properties.getProperty("user" + number + ".userName"));
-        user.setAvatarUrl(properties.getProperty("user" + number + ".avatarURL"));
+        user.setEmail(properties.getProperty(header + ".email"));
+        user.setBlogUrl(properties.getProperty(header + ".blogURL"));
+        user.setFeedUrl(properties.getProperty(header + ".feedURL"));
+        user.setUserName(properties.getProperty(header + ".userName"));
+        user.setAvatarUrl(properties.getProperty(header + ".avatarURL"));
 
         return user;
     }
