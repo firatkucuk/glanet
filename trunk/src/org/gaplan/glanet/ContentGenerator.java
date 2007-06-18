@@ -91,9 +91,16 @@ public class ContentGenerator extends TimerTask {
 
                 FetcherServlet.message(user.getFullName() +
                     " Content Generation Started!");
-                tempPostList.addAll(fetchAll(user));
-                FetcherServlet.message(user.getFullName() +
-                    " Content Generation Accomplished!");
+
+                try {
+
+                    tempPostList.addAll(fetchAll(user));
+                    FetcherServlet.message(user.getFullName() +
+                        " Content Generation Accomplished!");
+                } catch (RSSException ex) {
+                    FetcherServlet.message("Rss Connection Failed!");
+                } catch (Exception ex) { ex.printStackTrace(); }
+
             }
 
             Collections.sort(tempPostList, new Comparator<UserPost>() {
@@ -150,18 +157,13 @@ public class ContentGenerator extends TimerTask {
 
     // --- [fetchAll] ----------------------------------------------------------
 
-    public static ArrayList<UserPost> fetchAll(User user) {
+    public static ArrayList<UserPost> fetchAll(User user) throws Exception {
 
         ArrayList<UserPost> allPosts   = new ArrayList<UserPost>();
         RSSHandler          rssHandler = new RSSHandler();
 
-        try {
-
-            URL url = new URL(user.getFeedUrl());
-            RSSParser.parseXmlFile(url, rssHandler, false);
-        } catch(RSSException e) {
-            FetcherServlet.message("Rss Connection Failed!");
-        } catch(Exception e) { e.printStackTrace(); }
+        URL url = new URL(user.getFeedUrl());
+        RSSParser.parseXmlFile(url, rssHandler, false);
 
         RSSChannel channel = rssHandler.getRSSChannel();
         LinkedList rssList = channel.getItems();
