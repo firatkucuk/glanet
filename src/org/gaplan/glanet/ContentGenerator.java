@@ -99,7 +99,7 @@ public class ContentGenerator extends TimerTask {
                         " Content Generation Accomplished!");
                 } catch (RSSException ex) {
                     FetcherServlet.message(user.getFullName() +
-                        "Rss Connection Failed!");
+                        " Rss Connection Failed!");
                 } catch (Exception ex) { ex.printStackTrace(); }
 
             }
