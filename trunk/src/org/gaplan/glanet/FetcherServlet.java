@@ -78,7 +78,7 @@ public class FetcherServlet extends HttpServlet {
         message("Initializing FetcherServlet ...");
 
         propertiesPath = this.getServletContext().getRealPath("") +
-            "/WEB-INF/glanet.properties";
+            "/WEB-INF/glanet.xml";
 
         contentGenerator = new ContentGenerator();
         timer.scheduleAtFixedRate(contentGenerator, 20000, 5 * 60000);

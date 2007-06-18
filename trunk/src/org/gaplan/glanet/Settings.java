@@ -5,7 +5,6 @@ package org.gaplan.glanet;
  * Dosya            / File           : Settings.java
  * Lisans           / Licence        : GPL
  * Yazar            / Author         : Cafer ŞİMŞEK, Fırat KÜÇÜK
- * Son Güncelleme   / Last Update    : 15 Haz, 2007 Cum 00:09:51
  * Kodlama          / Encoding       : UTF-8
  * Satır Sonları    / Line Endings   : LF
  *

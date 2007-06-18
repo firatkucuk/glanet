@@ -6,7 +6,6 @@ package org.gaplan.glanet;
  * Dosya            / File           : UserPost.java
  * Lisans           / Licence        : GPL
  * Yazar            / Author         : Cafer ŞİMŞEK, Fırat KÜÇÜK
- * Son Güncelleme   / Last Update    : 15 Haz, 2007 Cum 00:10:14
  * Kodlama          / Encoding       : UTF-8
  * Satır Sonları    / Line Endings   : LF
  *
